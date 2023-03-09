@@ -1,0 +1,127 @@
+<% if(success && success.length) {%>
+<div class="alert" role="alert">
+  <%=success %>
+  <button>
+    <svg
+      xmlns="https://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+    >
+      <title>close</title>
+      <g fill="none">
+        <path
+          stroke="#ffffff"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1.5"
+          d="M17.25 6.75l-10.5 10.5"
+        ></path>
+        <path
+          stroke="#ffffff"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1.5"
+          d="M6.75 6.75l10.5 10.5"
+        ></path>
+      </g>
+    </svg>
+  </button>
+</div>
+<% } %> <% if(error && error.length) {%>
+<div class="alert" role="alert">
+  <%=error %>
+  <button>
+    <svg
+      xmlns="https://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+    >
+      <title>close</title>
+      <g fill="none">
+        <path
+          stroke="#ffffff"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1.5"
+          d="M17.25 6.75l-10.5 10.5"
+        ></path>
+        <path
+          stroke="#ffffff"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="1.5"
+          d="M6.75 6.75l10.5 10.5"
+        ></path>
+      </g>
+    </svg>
+  </button>
+</div>
+<% } %>
+<script>
+  const alert = document.querySelector('.alert');
+  const dismissAlertButton = document.querySelector('.alert button');
+  //   if (localStorage.getItem('hideAlert')) {
+  //     alert.style.display = 'none';
+  //   }
+  if (dismissAlertButton) {
+    dismissAlertButton.addEventListener('click', (event) => {
+      event.preventDefault();
+      alert.classList.add('alert-hidden');
+      localStorage.setItem('hideAlert', true);
+    });
+  }
+</script>
+
+<style>
+  :root {
+    --primary: #2563eb;
+    --bg-light: #f1f5f9;
+    --bg-alert: #2a2a33;
+    --bg-callout: #dbeafe;
+    --border-base: #cbd5e1;
+    --text-base: #475569;
+  }
+  .alert {
+    background: var(--bg-alert);
+    padding: 1rem;
+    text-align: center;
+    color: #bdbdbd;
+    position: relative;
+    transform: scaleY(1);
+    min-width: 500px;
+    /* width: 100vw; */
+    transition: all ease-in-out 0.3s;
+    margin-top: 70px;
+    margin-bottom: 10px;
+  }
+  .alert button {
+    border: none;
+    background: transparent;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: absolute;
+    top: 8px;
+    right: 5px;
+  }
+  .alert button:hover {
+    background: rgba(255, 255, 255, 0.35);
+  }
+  .alert-hidden {
+    opacity: 0;
+    padding: 0;
+    visibility: hidden;
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: all ease-in-out 0.3s;
+  }
+  .alert button:focus {
+    box-shadow: inset 0 0 0 2px var(--border-base);
+  }
+</style>
