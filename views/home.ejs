@@ -45,7 +45,7 @@
           <!-- <%= success %>  -->
           <%- include('partials/flash') %> <% if (!currentUser) { %>
           <div class="info">
-            Open an Account to Buy, Trade, Invest in Crypto
+            <!-- Open an Account to Buy, Trade, Invest in Crypto -->
           </div>
           <% } %> <% if (!currentUser) { %>
           <div class="block">
@@ -82,62 +82,22 @@
               <div class="headcontent">24Hour Change</div>
               <div class="headcontent">24Hour Volume</div>
             </div>
+
+            <% let data = apiData %> <% for( let index = 0; index < 8; index++ )
+            { %> <% let {symbol, name,
+            current_price,price_change_24h,total_volume} = data[index] %> <%
+            console.log('symbol,name,price,change',symbol, name,
+            current_price,price_change_24h)%>
             <div class="row">
-              <div class="cell">BTC</div>
-              <div class="cell">$22,647.43</div>
-              <div class="cell">+4.45%</div>
-              <div class="cell">$130,915,728.29</div>
+              <div class="cell"><%=symbol%></div>
+              <div class="cell">$<%=Math.round(current_price * 100)/100 %></div>
+              <div class="cell">
+                <%=Math.round(price_change_24h * 100)/100%>
+              </div>
+              <div class="cell">$<%=Math.round(total_volume * 100)/100%></div>
               <div class="cell"><button class="details">Details</button></div>
             </div>
-            <div class="row">
-              <div class="cell">BTC</div>
-              <div class="cell">$22,647.43</div>
-              <div class="cell">+4.45%</div>
-              <div class="cell">$130,915,728.29</div>
-              <div class="cell"><button class="details">Details</button></div>
-            </div>
-            <div class="row">
-              <div class="cell">BTC</div>
-              <div class="cell">$22,647.43</div>
-              <div class="cell">+4.45%</div>
-              <div class="cell">$130,915,728.29</div>
-              <div class="cell"><button class="details">Details</button></div>
-            </div>
-            <div class="row">
-              <div class="cell">BTC</div>
-              <div class="cell">$22,647.43</div>
-              <div class="cell">+4.45%</div>
-              <div class="cell">$130,915,728.29</div>
-              <div class="cell"><button class="details">Details</button></div>
-            </div>
-            <div class="row">
-              <div class="cell">BTC</div>
-              <div class="cell">$22,647.43</div>
-              <div class="cell">+4.45%</div>
-              <div class="cell">$130,915,728.29</div>
-              <div class="cell"><button class="details">Details</button></div>
-            </div>
-            <div class="row">
-              <div class="cell">BTC</div>
-              <div class="cell">$22,647.43</div>
-              <div class="cell">+4.45%</div>
-              <div class="cell">$130,915,728.29</div>
-              <div class="cell"><button class="details">Details</button></div>
-            </div>
-            <div class="row">
-              <div class="cell">BTC</div>
-              <div class="cell">$22,647.43</div>
-              <div class="cell">+4.45%</div>
-              <div class="cell">$130,915,728.29</div>
-              <div class="cell"><button class="details">Details</button></div>
-            </div>
-            <div class="row">
-              <div class="cell">BTC</div>
-              <div class="cell">$22,647.43</div>
-              <div class="cell">+4.45%</div>
-              <div class="cell">$130,915,728.29</div>
-              <div class="cell"><button class="details">Details</button></div>
-            </div>
+            <% } %>
           </div>
           <div class="more"><a href="#">View More</a></div>
           <% if (!currentUser) { %>

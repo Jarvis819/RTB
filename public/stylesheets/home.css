@@ -117,15 +117,16 @@ img {
   height: 50px;
   background-color: #24242c;
   align-items: center;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
   border-radius: 3px;
   justify-content: space-around;
   margin-top: 10px;
 }
+
 .row:hover {
   background-color: #2a2a33;
 }
+
 .details {
   color: #181a20;
   padding: 5px 10px;

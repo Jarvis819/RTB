@@ -13,6 +13,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 
 const userRoutes = require('./routes/userRoutes');
+const { default: axios } = require('axios');
 
 app.set('view engine', 'ejs');
 app.engine('ejs', ejsMate);
@@ -51,10 +52,20 @@ db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
   console.log('connected to DataBase');
 });
-app.use((req, res, next) => {
+
+const apiCall = async () => {
+  const res = await axios.get(
+    'https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=100&page=1&sparkline=false'
+  );
+  // console.log('response:', res.data);
+  return res.data;
+};
+
+app.use(async (req, res, next) => {
   res.locals.success = req.flash('success');
   res.locals.error = req.flash('error');
   res.locals.currentUser = req.user;
+  res.locals.apiData = await apiCall();
   next();
 });
 app.use('/', userRoutes);
