@@ -1,3 +1,7 @@
+if (process.env.NODE_ENV !== 'production') {
+  require('dotenv').config();
+}
+
 const express = require('express');
 const app = express();
 const path = require('path');
@@ -12,6 +16,9 @@ const flash = require('connect-flash');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 
+const dbUrl = process.env.DB_URL || 'mongodb://127.0.0.1:27017/registerForm';
+const secret = process.env.SECRET || 'thisshouldbeabettersecret';
+
 const userRoutes = require('./routes/userRoutes');
 const { default: axios } = require('axios');
 
@@ -23,7 +30,7 @@ app.use(methodOverride('_method'));
 app.use(express.static(path.join(__dirname, 'public')));
 
 const sessionConfig = {
-  secret: 'thisshouldbeabettersecret',
+  secret,
   resave: false,
   saveUninitialized: true,
   cookie: {
@@ -42,7 +49,7 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-mongoose.connect('mongodb://127.0.0.1:27017/registerForm', {
+mongoose.connect(dbUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
