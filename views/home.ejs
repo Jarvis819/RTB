@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <title>Home</title>
+    <link rel="icon" href="/images/infinity.png" type="image/x-icon" />
+    <title>Real Time Bidding</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
@@ -13,123 +13,114 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <script src="index.js"></script>
     <link rel="stylesheet" href="/stylesheets/home.css" />
+    <script src="dist/metamask-onboarding.bundle.js"></script>
   </head>
   <body>
-    <!DOCTYPE html>
-    <html lang="en">
-      <head>
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <link rel="stylesheet" href="styles.css" />
-        <title>Landing Page</title>
-      </head>
-
-      <body>
-        <div class="main">
-          <div class="header">
-            <div class="logo">Logo</div>
-            <ul class="header-links">
-              <!-- <li><a href="#">link one</a></li>
+    <div class="main">
+      <div class="header">
+        <div class="logo"><img src="/images/infinity.png" alt="" /></div>
+        <ul class="header-links">
+          <!-- <li><a href="#">link one</a></li>
               <li><a href="#">link two</a></li>
               <li><a href="#">Top 100 Crypto</a></li> -->
-              <% if (!currentUser) { %>
-              <li><a href="/register">Register</a></li>
-              <li><a href="/Login">Login</a></li>
-              <% } else{ %>
-              <li><a href="/logout">Logout</a></li>
-              <% } %>
-            </ul>
-          </div>
-          <!-- <%= success %>  -->
-          <%- include('partials/flash') %> <% if (!currentUser) { %>
-          <div class="info">
-            <!-- Open an Account to Buy, Trade, Invest in Crypto -->
-          </div>
-          <% } %> <% if (!currentUser) { %>
-          <div class="block">
-            <div class="inner">
-              <div class="signup-1">Signup now</div>
-              <div class="data">
-                <div><span class="mobile-prefix">+91</span></div>
-                <div class="num">
-                  <input
-                    type="text"
-                    id="number"
-                    maxlength="10"
-                    placeholder="10 Digit Mobile Number"
-                  />
-                </div>
-              </div>
-              <div class="alr-text">Already a member</div>
-              <form action="/login">
-                <button class="button-one">Login</button>
-              </form>
-            </div>
-            <div class="img">
-              <img
-                src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=876&q=80"
+          <% if (!currentUser) { %>
+          <li><a href="/register">Register</a></li>
+          <li><a href="/Login">Login</a></li>
+          <% } else{ %>
+          <li><a href="/logout">Logout</a></li>
+          <% } %>
+        </ul>
+      </div>
+      <div>
+        <input
+          class="block-button"
+          type="button"
+          value="Connect Wallet"
+          id="connectWallet"
+        />
+      </div>
+      <!-- <%= success %>  -->
+      <%- include('partials/flash') %> <% if (!currentUser) { %>
+      <div class="info">Open an Account to Buy, Trade, Invest in Crypto</div>
+      <% } %> <% if (!currentUser) { %>
+      <div class="block">
+        <div class="inner">
+          <div class="signup-1">Signup now</div>
+          <div class="data">
+            <div><span class="mobile-prefix">+91</span></div>
+            <div class="num">
+              <input
+                type="text"
+                id="number"
+                maxlength="10"
+                placeholder="10 Digit Mobile Number"
               />
             </div>
           </div>
-          <%}%>
-
-          <div class="content">
-            <div class="tablehead">
-              <div class="headcontent">Instrument</div>
-              <div class="headcontent">Last Price</div>
-              <div class="headcontent">24Hour Change</div>
-              <div class="headcontent">24Hour Volume</div>
-            </div>
-
-            <% let data = apiData %> <% for( let index = 0; index < 8; index++ )
-            { %> <% let {symbol, name,
-            current_price,price_change_24h,total_volume} = data[index] %> <%
-            console.log('symbol,name,price,change',symbol, name,
-            current_price,price_change_24h)%>
-            <div class="row">
-              <div class="cell"><%=symbol%></div>
-              <div class="cell">$<%=Math.round(current_price * 100)/100 %></div>
-              <div class="cell">
-                <%=Math.round(price_change_24h * 100)/100%>
-              </div>
-              <div class="cell">$<%=Math.round(total_volume * 100)/100%></div>
-              <div class="cell"><button class="details">Details</button></div>
-            </div>
-            <% } %>
-          </div>
-          <div class="more"><a href="#">View More</a></div>
-          <% if (!currentUser) { %>
-
-          <div class="act">
-            <div class="box-two">
-              <div class="call">
-                <div class="action">Sign Up using Email</div>
-                <div class="signup">
-                  Sign up for our Application by clicking the button on the
-                  right
-                </div>
-              </div>
-              <button class="button-two">
-                <a href="/register" id="signup">Sign Up</a>
-              </button>
-            </div>
-          </div>
-          <% } %>
+          <div class="alr-text">Already a member</div>
+          <form action="/login">
+            <button class="button-one">Login</button>
+          </form>
         </div>
-        <div class="footer">
-          <ul class="footer-links">
-            <li>
-              <a href="#">link one</a>
-            </li>
-            <li><a href="#">link two</a></li>
-            <li><a href="#">link three</a></li>
-            <li><a href="#">link four</a></li>
-            <li><a href="#">link five</a></li>
-          </ul>
+        <div class="img">
+          <img
+            src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=876&q=80"
+          />
         </div>
-      </body>
-    </html>
+      </div>
+      <%}%>
+
+      <div class="content">
+        <div class="tablehead">
+          <div class="headcontent">Instrument</div>
+          <div class="headcontent">Last Price</div>
+          <div class="headcontent">24Hour Change</div>
+          <div class="headcontent">24Hour Volume</div>
+        </div>
+        <% let data = apiData %> <% for( let index = 0; index < 8; index++ ) {
+        %> <% let {symbol, name, current_price,price_change_24h,total_volume} =
+        data[index] %> <% console.log('symbol,name,price,change',symbol, name,
+        current_price,price_change_24h)%>
+        <div class="row">
+          <div class="cell"><%=symbol%></div>
+          <div class="cell">$<%=Math.round(current_price * 100)/100 %></div>
+          <div class="cell"><%=Math.round(price_change_24h * 100)/100%></div>
+          <div class="cell">$<%=Math.round(total_volume * 100)/100%></div>
+          <div class="cell"><button class="details">Details</button></div>
+        </div>
+        <% } %>
+      </div>
+
+      <div class="more"><a href="#">View More</a></div>
+      <% if (!currentUser) { %>
+
+      <div class="act">
+        <div class="box-two">
+          <div class="call">
+            <div class="action">Sign Up using Email</div>
+            <div class="signup">
+              Sign up for our Application by clicking the button on the right
+            </div>
+          </div>
+          <button class="button-two">
+            <a href="/register" id="signup">Sign Up</a>
+          </button>
+        </div>
+      </div>
+      <% } %>
+    </div>
+    <div class="footer">
+      <ul class="footer-links">
+        <li>
+          <a href="#">link one</a>
+        </li>
+        <li><a href="#">link two</a></li>
+        <li><a href="#">link three</a></li>
+        <li><a href="#">link four</a></li>
+        <li><a href="#">link five</a></li>
+      </ul>
+    </div>
   </body>
 </html>
